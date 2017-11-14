@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,16 +13,16 @@
         <scene sceneID="FQQ-KC-1kz">
             <objects>
                 <tableViewController id="npw-vf-Xqo" customClass="PokemonTableViewControlerTableViewController" customModule="tableViewControler" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rQ2-mX-tFW">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rQ2-mX-tFW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="BG8-2s-XUh">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" id="BG8-2s-XUh">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BG8-2s-XUh" id="ogi-yg-ZWB">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -35,6 +36,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="whL-x9-4p5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="98" y="123"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="O9N-Dj-XPv">
+            <objects>
+                <viewController id="nmq-Sx-sJw" customClass="ViewController" customModule="tableViewControler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rd0-pA-eyv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtA-4D-NJi">
+                                <rect key="frame" x="0.0" y="289" width="375" height="89"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="26"/>
+                                <color key="textColor" red="0.43521245211083093" green="0.85059769504566485" blue="0.37974703221440359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" red="0.43521245209999998" green="0.85059769500000004" blue="0.3797470322" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XtA-4D-NJi" firstAttribute="leading" secondItem="Iu2-9I-Vlr" secondAttribute="leading" id="MdP-OU-aIW"/>
+                            <constraint firstItem="Iu2-9I-Vlr" firstAttribute="bottom" secondItem="XtA-4D-NJi" secondAttribute="bottom" constant="289" id="gNL-2Q-OQP"/>
+                            <constraint firstItem="XtA-4D-NJi" firstAttribute="trailing" secondItem="Iu2-9I-Vlr" secondAttribute="trailing" id="hIT-tu-WOF"/>
+                            <constraint firstItem="XtA-4D-NJi" firstAttribute="top" secondItem="Iu2-9I-Vlr" secondAttribute="top" constant="269" id="jWl-CE-Yvn"/>
+                            <constraint firstItem="XtA-4D-NJi" firstAttribute="centerX" secondItem="Rd0-pA-eyv" secondAttribute="centerX" id="jZc-aL-DsL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Iu2-9I-Vlr"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RPn-ND-ZCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="768.79999999999995" y="126.38680659670166"/>
         </scene>
     </scenes>
 </document>
