@@ -20,6 +20,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func didClickBack(_ sender: Any) {
+        
+        dismiss(animated: true, completion: nil)
+        
+        //performSegue(withIdentifier: "backToPokemonlist", sender: nil)
+    }
+    
 }
 

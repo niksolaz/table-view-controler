@@ -67,9 +67,12 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Back"/>
                                                 <connections>
-                                                    <segue destination="npw-vf-Xqo" kind="show" id="IcU-tF-mJ3"/>
+                                                    <segue destination="npw-vf-Xqo" kind="show" identifier="backToPokemonlist" id="IcU-tF-mJ3"/>
                                                 </connections>
                                             </button>
+                                            <connections>
+                                                <action selector="didClickBack:" destination="nmq-Sx-sJw" id="zGM-ub-eT0"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
