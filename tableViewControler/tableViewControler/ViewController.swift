@@ -10,9 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var pokemonDetail:String?
+    
+    
+    @IBOutlet weak var pokemonName: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        pokemonName.text = pokemonDetail
+        
     }
 
     override func didReceiveMemoryWarning() {

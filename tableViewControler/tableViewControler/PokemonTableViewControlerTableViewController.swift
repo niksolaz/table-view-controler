@@ -46,7 +46,16 @@ class PokemonTableViewControlerTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "pokDetail", sender: nil)
+        
+        performSegue(withIdentifier: "pokDetail", sender: pokemons[indexPath.row])
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "pokDetail" {
+            let vc = segue.destination as! ViewController
+            vc.pokemonDetail = sender as? String
+        }
     }
 
     /*
