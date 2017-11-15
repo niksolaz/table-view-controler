@@ -10,12 +10,12 @@ import UIKit
 
 class PokemonTableViewControlerTableViewController: UITableViewController {
 
-    var pokemons:[String] = []
+    var pokemons:[PokemonList] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        pokemons = Pokemon.getPokemon().sorted()
+        pokemons = Pokemon.getPokemon()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,21 +40,23 @@ class PokemonTableViewControlerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        cell.textLabel?.text = pokemons[indexPath.row]
+        let pok = pokemons[indexPath.row]
+        cell.textLabel?.text = pok.name
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        performSegue(withIdentifier: "pokDetail", sender: pokemons[indexPath.row])
+        let pok = pokemons[indexPath.row]
+        performSegue(withIdentifier: "pokDetail", sender: pok)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pokDetail" {
             let vc = segue.destination as! ViewController
-            vc.pokemonDetail = sender as? String
+            let poke = sender as! PokemonList
+            vc.pokemonDetail = poke.name
         }
     }
 

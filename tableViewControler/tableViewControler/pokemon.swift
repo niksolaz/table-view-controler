@@ -5,9 +5,27 @@
 //  Created by Nicola Solazzo on 14/11/17.
 //  Copyright © 2017 Nicola Solazzo. All rights reserved.
 //
+import Foundation
+
+struct PokemonList {
+    var name:String
+    var url:String
+}
+
+struct PokemonResponse {
+    var next:String?
+    var previous:String?
+    var count:Int
+    var results:[PokemonList]
+}
 
 struct Pokemon {
-    static func getPokemon() -> [String] {
+    
+    static func getPokemon() -> [PokemonList] {
+        
+        let poke1 = PokemonList(name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/")
+        return [poke1]
+/*
     return [
     "Bulbasaur",
     "Ivysaur",
@@ -812,6 +830,6 @@ struct Pokemon {
     "Magearna",
     "Marshadow"
     ]
-
+*/
     }
 }
