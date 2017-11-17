@@ -8,14 +8,14 @@
 
 import UIKit
 
-class PokemonTableViewControlerTableViewController: UITableViewController {
+class PokemonTableTableViewController: UITableViewController {
 
     var pokemons:[PokemonList] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        pokemons = Pokemon.getPokemon()
+        Pokemon.getPokemons(self)
     }
 
     override func didReceiveMemoryWarning() {

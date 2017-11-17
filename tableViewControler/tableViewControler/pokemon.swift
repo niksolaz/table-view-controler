@@ -6,6 +6,7 @@
 //  Copyright © 2017 Nicola Solazzo. All rights reserved.
 //
 import Foundation
+import UIKit
 
 struct PokemonList:Decodable {
     var name:String
@@ -25,7 +26,7 @@ struct Pokemon {
     
     static let pokemonCount = 100
     
-    static func getPokemon() -> [PokemonList] {
+    static func getPokemons(_ pokemonCtrl:PokemonTableTableViewController) {
         let url = URL(string: pokemonApi + "?limit=\(pokemonCount)")
         let urlSession = URLSession.shared
         
@@ -35,6 +36,7 @@ struct Pokemon {
             (data, response, error) in
             if error != nil {
                 print(error!)
+                return
             }
             guard let httpResponse = response as? HTTPURLResponse else {
                print(response!)
@@ -49,13 +51,17 @@ struct Pokemon {
             let jsonData = try? decoder.decode(PokemonResponse.self, from: data!)
             if jsonData != nil {
                 DispatchQueue.main.async {
-                    <#code#>
+                    pokemonCtrl.pokemons = (jsonData?.results)!
+                    pokemonCtrl.tableView.reloadData()
                 }
             }
         }
         task.resume()
+       
+        /*
         let poke1 = PokemonList(name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/")
         return [poke1]
+ */
 /*
     return [
     "Bulbasaur",
