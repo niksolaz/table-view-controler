@@ -7,12 +7,12 @@
 //
 import Foundation
 
-struct PokemonList {
+struct PokemonList:Decodable {
     var name:String
     var url:String
 }
 
-struct PokemonResponse {
+struct PokemonResponse:Decodable {
     var next:String?
     var previous:String?
     var count:Int
@@ -31,12 +31,27 @@ struct Pokemon {
         
         let task = urlSession.dataTask(with: url!) {
             
+            
             (data, response, error) in
             if error != nil {
                 print(error!)
             }
-            print(response!)
-            print(data!)
+            guard let httpResponse = response as? HTTPURLResponse else {
+               print(response!)
+                return
+            }
+            if httpResponse.statusCode != 200 {
+                print(httpResponse)
+                return
+            }
+            // parse data in json
+            let decoder = JSONDecoder()
+            let jsonData = try? decoder.decode(PokemonResponse.self, from: data!)
+            if jsonData != nil {
+                DispatchQueue.main.async {
+                    <#code#>
+                }
+            }
         }
         task.resume()
         let poke1 = PokemonList(name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/")
