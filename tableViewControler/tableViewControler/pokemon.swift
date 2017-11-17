@@ -21,8 +21,24 @@ struct PokemonResponse {
 
 struct Pokemon {
     
+    static let pokemonApi = "https://pokeapi.co/api/v2/pokemon"
+    
+    static let pokemonCount = 100
+    
     static func getPokemon() -> [PokemonList] {
+        let url = URL(string: pokemonApi + "?limit=\(pokemonCount)")
+        let urlSession = URLSession.shared
         
+        let task = urlSession.dataTask(with: url!) {
+            
+            (data, response, error) in
+            if error != nil {
+                print(error!)
+            }
+            print(response!)
+            print(data!)
+        }
+        task.resume()
         let poke1 = PokemonList(name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/")
         return [poke1]
 /*
