@@ -50,21 +50,19 @@
             </objects>
             <point key="canvasLocation" x="110" y="-461"/>
         </scene>
-        <!--View Controller-->
+        <!--Pokemon Detail View Controller-->
         <scene sceneID="O9N-Dj-XPv">
             <objects>
-                <viewController id="nmq-Sx-sJw" customClass="ViewController" customModule="tableViewControler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nmq-Sx-sJw" customClass="PokemonDetailViewController" customModule="tableViewControler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rd0-pA-eyv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qct-VV-wea">
+                                <rect key="frame" x="50" y="296.5" width="275" height="270.5"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtA-4D-NJi">
-                                <rect key="frame" x="0.0" y="333" width="375" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="7MJ-bF-6fg"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="275" id="n7W-gT-IYU"/>
-                                    <constraint firstAttribute="height" constant="45" id="ssv-SD-eYh"/>
-                                </constraints>
+                                <rect key="frame" x="50" y="164" width="275" height="32.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="26"/>
                                 <color key="textColor" red="0.43521245211083093" green="0.85059769504566485" blue="0.37974703221440359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="highlightedColor" red="0.43521245209999998" green="0.85059769500000004" blue="0.3797470322" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,27 +72,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="XtA-4D-NJi" firstAttribute="centerX" secondItem="Rd0-pA-eyv" secondAttribute="centerX" id="9oe-NV-XFr"/>
-                            <constraint firstItem="XtA-4D-NJi" firstAttribute="leading" secondItem="Rd0-pA-eyv" secondAttribute="leading" id="MQG-ZS-lJ0"/>
-                            <constraint firstItem="XtA-4D-NJi" firstAttribute="leading" secondItem="Iu2-9I-Vlr" secondAttribute="leading" id="PVw-Pf-WCc"/>
-                            <constraint firstItem="XtA-4D-NJi" firstAttribute="top" secondItem="Iu2-9I-Vlr" secondAttribute="top" constant="269" id="RF6-4f-lJT"/>
-                            <constraint firstItem="XtA-4D-NJi" firstAttribute="top" secondItem="Rd0-pA-eyv" secondAttribute="top" constant="333" id="UfA-kF-yLa"/>
-                            <constraint firstItem="XtA-4D-NJi" firstAttribute="top" secondItem="Rd0-pA-eyv" secondAttribute="top" constant="333" id="c7J-Js-IOk"/>
-                            <constraint firstItem="XtA-4D-NJi" firstAttribute="leading" secondItem="Rd0-pA-eyv" secondAttribute="leading" id="iYF-lG-hP3"/>
-                            <constraint firstItem="XtA-4D-NJi" firstAttribute="trailing" secondItem="Iu2-9I-Vlr" secondAttribute="trailing" id="jMD-BM-bxe"/>
-                            <constraint firstItem="XtA-4D-NJi" firstAttribute="leading" secondItem="Rd0-pA-eyv" secondAttribute="leading" id="lZK-KV-1TY"/>
-                            <constraint firstAttribute="trailing" secondItem="XtA-4D-NJi" secondAttribute="trailing" id="ofn-ie-fTi"/>
-                            <constraint firstItem="Iu2-9I-Vlr" firstAttribute="bottom" secondItem="XtA-4D-NJi" secondAttribute="bottom" constant="289" id="pZh-bd-PL1"/>
+                            <constraint firstItem="XtA-4D-NJi" firstAttribute="centerX" secondItem="Rd0-pA-eyv" secondAttribute="centerX" id="8Ca-TE-cfv"/>
+                            <constraint firstItem="qct-VV-wea" firstAttribute="top" secondItem="XtA-4D-NJi" secondAttribute="bottom" constant="100" id="IaP-eK-gHk"/>
+                            <constraint firstItem="XtA-4D-NJi" firstAttribute="top" secondItem="Iu2-9I-Vlr" secondAttribute="top" constant="100" id="NYp-qk-QbJ"/>
+                            <constraint firstItem="Iu2-9I-Vlr" firstAttribute="trailing" secondItem="qct-VV-wea" secondAttribute="trailing" constant="50" id="NmF-8Z-8C9"/>
+                            <constraint firstItem="qct-VV-wea" firstAttribute="leading" secondItem="Iu2-9I-Vlr" secondAttribute="leading" constant="50" id="h63-Na-pxJ"/>
+                            <constraint firstItem="Iu2-9I-Vlr" firstAttribute="bottom" secondItem="qct-VV-wea" secondAttribute="bottom" constant="100" id="k69-ro-XSr"/>
+                            <constraint firstItem="Iu2-9I-Vlr" firstAttribute="trailing" secondItem="XtA-4D-NJi" secondAttribute="trailing" constant="50" id="uQa-bD-JQt"/>
+                            <constraint firstItem="XtA-4D-NJi" firstAttribute="leading" secondItem="Iu2-9I-Vlr" secondAttribute="leading" constant="50" id="was-HP-y1v"/>
+                            <constraint firstItem="qct-VV-wea" firstAttribute="centerX" secondItem="Rd0-pA-eyv" secondAttribute="centerX" id="zUL-ku-7Ag"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Iu2-9I-Vlr"/>
                     </view>
                     <connections>
+                        <outlet property="pokImg" destination="qct-VV-wea" id="P37-rt-MS7"/>
                         <outlet property="pokemonName" destination="XtA-4D-NJi" id="MtF-6O-bgc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPn-ND-ZCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1274" y="-461"/>
+            <point key="canvasLocation" x="1272.8" y="-461.01949025487261"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TaB-n0-Eh8">

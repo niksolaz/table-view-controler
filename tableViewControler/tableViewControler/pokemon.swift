@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+let imageCached = NSCache<AnyObject, AnyObject>()
+
 struct PokemonList:Decodable {
     var name:String
     var url:String
@@ -18,12 +20,19 @@ struct PokemonList:Decodable {
         guard let imgUrl = URL(string: apiUrl + "\(pokId).png") else {
             return nil
         }
+        print("url trovata : \(imgUrl)")
+        if let cachedImg = imageCached.object(forKey: imgUrl as AnyObject) as? UIImage {
+            print("cachedImg trovata")
+            return cachedImg
+        }
         guard let imgData = try? Data(contentsOf: imgUrl) else {
             return nil
         }
         guard let pokImage = UIImage(data: imgData) else {
             return nil
         }
+        imageCached.setObject(pokImage, forKey: imgUrl as AnyObject)
+        print("pokImage trovata")
         return pokImage
     }
 }
