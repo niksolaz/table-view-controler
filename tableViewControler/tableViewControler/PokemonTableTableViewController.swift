@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PokemonTableTableViewController: UITableViewController {
+class PokemonTableViewControlerTableViewController: UITableViewController {
 
     var pokemons:[PokemonList] = []
     
@@ -42,6 +42,7 @@ class PokemonTableTableViewController: UITableViewController {
 
         let pok = pokemons[indexPath.row]
         cell.textLabel?.text = pok.name
+        cell.imageView?.image = pok.getImage()
 
         return cell
     }

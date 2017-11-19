@@ -11,6 +11,21 @@ import UIKit
 struct PokemonList:Decodable {
     var name:String
     var url:String
+    func getImage() -> UIImage? {
+        let apiUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon"
+        let urlPieces = url.split(separator: "/")
+        let pokId = urlPieces[urlPieces.count-1]
+        guard let imgUrl = URL(string: apiUrl + "\(pokId).png") else {
+            return nil
+        }
+        guard let imgData = try? Data(contentsOf: imgUrl) else {
+            return nil
+        }
+        guard let pokImage = UIImage(data: imgData) else {
+            return nil
+        }
+        return pokImage
+    }
 }
 
 struct PokemonResponse:Decodable {
@@ -26,7 +41,7 @@ struct Pokemon {
     
     static let pokemonCount = 100
     
-    static func getPokemons(_ pokemonCtrl:PokemonTableTableViewController) {
+    static func getPokemons(_ pokemonCtrl:PokemonTableViewControlerTableViewController) {
         let url = URL(string: pokemonApi + "?limit=\(pokemonCount)")
         let urlSession = URLSession.shared
         
@@ -57,7 +72,11 @@ struct Pokemon {
             }
         }
         task.resume()
+    
        
+    }
+}
+
         /*
         let poke1 = PokemonList(name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/")
         return [poke1]
@@ -868,5 +887,4 @@ struct Pokemon {
     "Marshadow"
     ]
 */
-    }
-}
+
