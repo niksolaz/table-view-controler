@@ -17,7 +17,7 @@ struct PokemonList:Decodable {
         let apiUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon"
         let urlPieces = url.split(separator: "/")
         let pokId = urlPieces[urlPieces.count-1]
-        guard let imgUrl = URL(string: apiUrl + "\(pokId).png") else {
+        guard let imgUrl = URL(string: apiUrl + "/\(pokId).png") else {
             return nil
         }
         print("url trovata : \(imgUrl)")
