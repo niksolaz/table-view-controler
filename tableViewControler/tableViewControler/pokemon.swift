@@ -56,6 +56,7 @@ struct Pokemon {
     static let pokemonApi = "https://pokeapi.co/api/v2/pokemon"
     
     static let pokemonCount = 1000
+    
     //create file for directory
     static func getPokFileUrl() -> URL? {
         guard let docUrl = getDocDirectory() else {
@@ -84,9 +85,17 @@ struct Pokemon {
                 print(httpResponse)
                 return
             }
+            guard let data = data else {
+                return
+            }
+            if let fileUrl = getPokFileUrl() {
+               try?  data.write(to: fileUrl)
+            }
+            
             // parse data in json
             let decoder = JSONDecoder()
-            let jsonData = try? decoder.decode(PokemonResponse.self, from: data!)
+            
+            let jsonData = try? decoder.decode(PokemonResponse.self, from: data)
             if jsonData != nil {
                 DispatchQueue.main.async {
                     pokemonCtrl.pokemons = (jsonData?.results)!
