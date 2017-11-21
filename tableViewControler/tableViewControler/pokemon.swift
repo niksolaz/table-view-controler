@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 let imageCached = NSCache<AnyObject, AnyObject>()
-
+//create directory
 func getDocDirectory() -> URL? {
     guard let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {
         return nil
@@ -56,6 +56,13 @@ struct Pokemon {
     static let pokemonApi = "https://pokeapi.co/api/v2/pokemon"
     
     static let pokemonCount = 1000
+    //create file for directory
+    static func getPokFileUrl() -> URL? {
+        guard let docUrl = getDocDirectory() else {
+            return nil
+        }
+        return docUrl.appendingPathComponent("pokemonlist").appendingPathExtension("json")
+    }
     
     static func getPokemons(_ pokemonCtrl:PokemonTableViewControlerTableViewController) {
         let url = URL(string: pokemonApi + "?limit=\(pokemonCount)")
