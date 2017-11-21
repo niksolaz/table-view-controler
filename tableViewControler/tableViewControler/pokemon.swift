@@ -27,9 +27,7 @@ struct PokemonList:Decodable {
         guard let imgUrl = URL(string: apiUrl + "/\(pokId).png") else {
             return nil
         }
-        print("url trovata : \(imgUrl)")
         if let cachedImg = imageCached.object(forKey: imgUrl as AnyObject) as? UIImage {
-            print("cachedImg trovata")
             return cachedImg
         }
         guard let imgData = try? Data(contentsOf: imgUrl) else {
@@ -39,7 +37,6 @@ struct PokemonList:Decodable {
             return nil
         }
         imageCached.setObject(pokImage, forKey: imgUrl as AnyObject)
-        print("pokImage trovata")
         return pokImage
     }
 }
@@ -65,8 +62,41 @@ struct Pokemon {
         return docUrl.appendingPathComponent("pokemonlist").appendingPathExtension("json")
     }
     
+    static func getPokemonsFile() -> PokemonResponse? {
+        let decoder = JSONDecoder()
+        
+        guard let fileUrl = getPokFileUrl() else {
+            return nil
+        }
+        if FileManager.default.fileExists(atPath: fileUrl.path) {
+            guard let data = try? Data(contentsOf: fileUrl) else {
+                return nil
+            }
+            guard let jsonData = try? decoder.decode(PokemonResponse.self, from: data) else {
+                return nil
+            }
+            return jsonData
+        } else {
+            return nil
+        }
+        
+    }
+    
+    
     static func getPokemons(_ pokemonCtrl:PokemonTableViewControlerTableViewController) {
+        
+        let decoder = JSONDecoder()
+        
+        if let pokResponse = getPokemonsFile() {
+            
+            print("date from file")
+            pokemonCtrl.pokemons = pokResponse.results
+            pokemonCtrl.tableView.reloadData()
+            return
+            
+        }
         let url = URL(string: pokemonApi + "?limit=\(pokemonCount)")
+        
         let urlSession = URLSession.shared
         
         let task = urlSession.dataTask(with: url!) {
@@ -93,9 +123,8 @@ struct Pokemon {
             }
             
             // parse data in json
-            let decoder = JSONDecoder()
             
-            let jsonData = try? decoder.decode(PokemonResponse.self, from: data)
+           let jsonData = try? decoder.decode(PokemonResponse.self, from: data)
             if jsonData != nil {
                 DispatchQueue.main.async {
                     pokemonCtrl.pokemons = (jsonData?.results)!
