@@ -10,6 +10,13 @@ import UIKit
 
 let imageCached = NSCache<AnyObject, AnyObject>()
 
+func getDocDirectory() -> URL? {
+    guard let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {
+        return nil
+    }
+    return docDirectory
+}
+
 struct PokemonList:Decodable {
     var name:String
     var url:String
@@ -48,7 +55,7 @@ struct Pokemon {
     
     static let pokemonApi = "https://pokeapi.co/api/v2/pokemon"
     
-    static let pokemonCount = 100
+    static let pokemonCount = 1000
     
     static func getPokemons(_ pokemonCtrl:PokemonTableViewControlerTableViewController) {
         let url = URL(string: pokemonApi + "?limit=\(pokemonCount)")
