@@ -67,7 +67,7 @@ struct PokemonList:Decodable {
             return nil
             
         }
-        try? guard let imgData = Data(contentsOf: imgUrl) else {
+        guard let imgData = try? Data(contentsOf: imgUrl) else {
             return nil
             
         }
