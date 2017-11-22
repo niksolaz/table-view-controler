@@ -16,7 +16,25 @@ func getDocDirectory() -> URL? {
     }
     return docDirectory
 }
-
+func getImgDir() -> URL? {
+    
+    let fm = FileManager.default
+    guard let docDir = getDocDirectory() else { return nil }
+    
+    let imgUrl = docDir.appendingPathComponent("images")
+    
+    if fm.fileExists(atPath: imgUrl.path) {
+        return imgUrl
+    }
+    
+    do {
+        try fm.createDirectory(at: imgUrl, withIntermediateDirectories: false, attributes: nil)
+        return imgUrl
+    } catch {
+        return nil
+    }
+    
+}
 struct PokemonList:Decodable {
     var name:String
     var url:String
@@ -39,22 +57,41 @@ struct PokemonList:Decodable {
         return imgUrl
     }
     
-    
+    func getFileUrlImg() -> URL? {
+        
+        guard let imgDir = getImgDir() else { return nil }
+        return imgDir.appendingPathComponent(String(getPokId())).appendingPathExtension("png")
+    }
+    func getSaveImg() -> UIImage? {
+        guard let imgUrl = getFileUrlImg() else {
+            return nil
+            
+        }
+        try? guard let imgData = Data(contentsOf: imgUrl) else {
+            return nil
+            
+        }
+        return UIImage(data: imgData)
+    }
     func getImage() -> UIImage? {
+        if let saveImg = getSaveImg() {
+            print("imagine trovata")
+            return saveImg
+        }
         guard let imgUrl = getImgUrl() else {
             return nil
         }
         
-        if let cachedImg = imageCached.object(forKey: imgUrl as AnyObject) as? UIImage {
-            return cachedImg
-        }
         guard let imgData = try? Data(contentsOf: imgUrl) else {
             return nil
+        }
+        if let imgUrl = getFileUrlImg() {
+            try? imgData.write(to: imgUrl)
         }
         guard let pokImage = UIImage(data: imgData) else {
             return nil
         }
-        imageCached.setObject(pokImage, forKey: imgUrl as AnyObject)
+        
         return pokImage
     }
 }
