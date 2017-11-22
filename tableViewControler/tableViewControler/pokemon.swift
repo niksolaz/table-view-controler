@@ -20,13 +20,31 @@ func getDocDirectory() -> URL? {
 struct PokemonList:Decodable {
     var name:String
     var url:String
-    func getImage() -> UIImage? {
-        let apiUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon"
+    let apiUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon"
+    
+    func getPokId() -> Int {
         let urlPieces = url.split(separator: "/")
-        let pokId = urlPieces[urlPieces.count-1]
+        
+        let pokId = String(urlPieces[urlPieces.count-1])
+        
+        return Int(pokId) ?? 0
+    }
+    
+    func getImgUrl() -> URL? {
+        let pokId = getPokId()
+        
         guard let imgUrl = URL(string: apiUrl + "/\(pokId).png") else {
             return nil
         }
+        return imgUrl
+    }
+    
+    
+    func getImage() -> UIImage? {
+        guard let imgUrl = getImgUrl() else {
+            return nil
+        }
+        
         if let cachedImg = imageCached.object(forKey: imgUrl as AnyObject) as? UIImage {
             return cachedImg
         }
